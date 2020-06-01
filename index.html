@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+
+    <title>Exaile control</title>
+
+    <script type="text/javascript" src="/js/exailectl.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <style type="text/css">
+        body { padding: 1em; }
+    </style>
+</head>
+
+<body>
+    <div class="container is-fluid">
+        <div class="columns is-centered">
+            <div id="player" class="column is-half has-text-centered">
+                <p class="is-size-1">{{ title }}</p>
+                <p class="is-size-4"><span>{{ album }}</span></p>
+                <p class="is-size-4"><span>{{ artist }}</span></p>
+
+                <br>
+
+                <progress id="progress" class="progress is-info" :value="progress" max="100">
+                </progress>
+
+                <button class="button is-rounded" id="playpause" @click="playPause">
+                    <span class="fa fw fa-lg" :class="{ 'fa-play': !playing, 'fa-pause': playing }"></span>
+                </button>
+                <button class="button is-rounded" id="prev" @click="playPrev">
+                    <span class="fa fw fa-lg fa-step-backward"></span>
+                </button>
+                <button class="button is-rounded" id="next" @click="playNext">
+                    <span class="fa fw fa-lg fa-step-forward"></span>
+                </button>
+                <button class="button is-rounded" id="stop" @click="stop">
+                    <span class="fa fw fa-lg fa-stop"></span>
+                </button>
+
+                <br><br>
+
+                <button class="button is-rounded" id="volume-down" @click="volumeDown">
+                    <span class="fa fw fa-lg fa-volume-down"></span>
+                </button>
+                <button class="button is-rounded" id="volume-up" @click="volumeUp">
+                    <span class="fa fw fa-lg fa-volume-up"></span>
+                </button>
+
+                <br><br>
+
+                <div id="playlist">
+                    <table class="table is-striped is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Length</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr v-for="track in playlist" :class="{ 'is-selected': track.title == title }" @click="jumpToTrack(track.id)">
+                                <td>{{ track.title }}</td>
+                                <td>{{ track.artist }}</td>
+                                <td>{{ track.length }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
