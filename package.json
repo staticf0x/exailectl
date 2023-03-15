@@ -20,7 +20,7 @@
   "devDependencies": {
     "minify": "^3.0.5",
     "minimist": "^1.2.6",
-    "webpack": "^5.74.0",
+    "webpack": "^5.76.0",
     "webpack-cli": "^5.0.1"
   }
 }
